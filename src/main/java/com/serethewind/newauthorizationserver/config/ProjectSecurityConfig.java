@@ -45,7 +45,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class ProjectSecurityConfig {
 
-    private UserDetailsService userDetailsService;
+//    private UserDetailsService userDetailsService;
 
     //password encoder used by the Authorization Provider
     @Bean
@@ -54,14 +54,14 @@ public class ProjectSecurityConfig {
     }
 
     //used to fetch user. In this case the repository is an inMemoryUserDetailsManager
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        UserDetails user1 = User.withUsername("noah").password(passwordEncoder().encode("12345")).roles("ADMIN").build();
-//        UserDetails user2 = User.withUsername("sere").password(passwordEncoder().encode("67890")).roles("USER").build();
-//
-//        return new InMemoryUserDetailsManager(user1, user2);
-//
-//    }
+    @Bean
+    public UserDetailsService userDetailsService() {
+        UserDetails user1 = User.withUsername("noah").password(passwordEncoder().encode("12345")).roles("ADMIN").build();
+        UserDetails user2 = User.withUsername("sere").password(passwordEncoder().encode("67890")).roles("USER").build();
+
+        return new InMemoryUserDetailsManager(user1, user2);
+
+    }
 
     @Bean
     @Order(2)
